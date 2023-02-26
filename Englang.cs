@@ -12,6 +12,7 @@ namespace Matrix_Calculus
 {
     internal class Englang
     {
+        char[] nums = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.' };
         public int Num_input(ref bool error)
         {
             string[] Args = Console.ReadLine().Split();
@@ -22,7 +23,18 @@ namespace Matrix_Calculus
                 return -10;
             }
 
-            else return Convert.ToInt32(Args[0]);
+            else {
+                int correct_length = 0;
+                foreach (char c in Args[0])
+                {
+                    for (int i = 0; i < nums.Length - 1; i++)
+                    {
+                        if (c == nums[i]) correct_length++;
+                    }
+                }
+                if (correct_length != (Args[0]).Length) { error = true; Console.WriteLine("\nNumber input error!"); return -10; }
+                else return Convert.ToInt32(Args[0]);
+            }
         }
         public double Double_input(ref bool error)
         {
@@ -34,7 +46,19 @@ namespace Matrix_Calculus
                 return 0;
             }
 
-            else return Double.Parse(Args[0], System.Globalization.CultureInfo.InvariantCulture);
+            else
+            {
+                int correct_length = 0;
+                foreach (char c in Args[0])
+                {
+                    for (int i = 0; i < nums.Length; i++)
+                    {
+                        if (c == nums[i]) correct_length++;
+                    }
+                }
+                if (correct_length != (Args[0]).Length) { error = true; Console.WriteLine("\nNumber input error!"); return 0; }
+                else return Double.Parse(Args[0], System.Globalization.CultureInfo.InvariantCulture);
+            }
         }
         public void Matrix_input(ref double[,] matrix, ref int n, ref int m, ref bool error)
         {
@@ -50,11 +74,33 @@ namespace Matrix_Calculus
                     error = true;
                     return;
                 }
-                else
+                else 
                 {
-                    for (int j=0;j<m;j++)
+                    bool err = false;
+                    for (int l = 0; l < Args.Length; l++)
                     {
-                        matrix[i, j] = Double.Parse(Args[j], System.Globalization.CultureInfo.InvariantCulture);
+                        int correct_length = 0;
+                        foreach (char c in Args[l])
+                        {
+                            for (int s = 0; s < nums.Length; s++)
+                            {
+                                if (nums[s] == c) correct_length++;
+                            }
+                        }
+                        if (correct_length != Args[l].Length) { err = true; break; }
+                    }
+                    if (err == true)
+                    {
+                        Console.WriteLine("\nMatrix input error!");
+                        error = true;
+                        return;
+                    }
+                    else
+                    {
+                        for (int j = 0; j < m; j++)
+                        {
+                            matrix[i, j] = Double.Parse(Args[j], System.Globalization.CultureInfo.InvariantCulture);
+                        }
                     }
                 }
             }
