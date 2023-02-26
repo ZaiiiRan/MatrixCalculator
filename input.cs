@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +11,7 @@ namespace Matrix_Calculus
         public bool Matrix_input_check(ref string[] Args,ref int m)
         {
             if (Args.Length != m) return false;
+            if (Args.Length == 1 && Args[0] == "") return false;
             else return true;
         }
     }
