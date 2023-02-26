@@ -23,6 +23,12 @@ Um die Sprache zu ändern, müssen Sie zu den Einstellungen gehen (L-Taste) und 
 Anwendungsversion - 1.5
 
 
+**New in 1.6**
+1) Bug fix
+
+
+
+
 **New in 1.5**
 1) Bug fix
 2) Start screen
